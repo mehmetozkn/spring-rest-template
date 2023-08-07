@@ -35,8 +35,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-
-    protected User findUserById(Long id) {
+    protected User findByUserId(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(
                         () -> new UserNotFoundException("User could not find by id: " + id));
@@ -44,12 +43,12 @@ public class UserService {
     }
 
     public UserDto getUserById(Long id) {
-        return converter.convertToUserDto(findUserById(id));
+        return converter.convertToUserDto(findByUserId(id));
     }
 
 
     public User updateUser(Long id, UserDto user) {
-        User updateUser = isUserExist(id);
+        User updateUser = isUserExists(id);
         updateUser.setName(user.getName());
         updateUser.setSurname(user.getSurname());
         return userRepository.save(updateUser);
@@ -57,14 +56,14 @@ public class UserService {
     }
 
     public User deleteUser(Long id) {
-        User user = isUserExist(id);
+        User user = isUserExists(id);
         userRepository.delete(user);
         return user;
 
     }
 
 
-    private User isUserExist(Long id) {
+    private User isUserExists(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if (Objects.isNull(user)) {
             throw new UserNotFoundException("User could not find by id :" + id);
