@@ -18,7 +18,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserDtoConverter converter;
 
-
     public UserService(UserRepository userRepository, UserDtoConverter converter) {
         this.userRepository = userRepository;
         this.converter = converter;
@@ -46,7 +45,6 @@ public class UserService {
         return converter.convertToUserDto(findByUserId(id));
     }
 
-
     public User updateUser(Long id, UserDto user) {
         User updateUser = isUserExists(id);
         updateUser.setName(user.getName());
@@ -62,7 +60,6 @@ public class UserService {
 
     }
 
-
     private User isUserExists(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if (Objects.isNull(user)) {
@@ -70,6 +67,4 @@ public class UserService {
         }
         return user;
     }
-
-
 }

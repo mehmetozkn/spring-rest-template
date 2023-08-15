@@ -25,6 +25,7 @@ class UserDtoConverterTest {
     public void testConvertUserDto_shouldReturnUserDto() {
         User user = new User(1L, "Mehmet", "Özkan");
         UserDto userDto = new UserDto(1L, "Mehmet", "Özkan");
+
         when(userDtoConverter.convertToUserDto(any())).thenReturn(userDto);
 
         assertEquals(user.getId(), userDto.getId());

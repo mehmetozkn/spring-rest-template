@@ -1,6 +1,4 @@
 package com.resttemplate.REST.Template.controller;
-
-
 import com.resttemplate.REST.Template.dto.UserDto;
 import com.resttemplate.REST.Template.model.User;
 import com.resttemplate.REST.Template.service.UserService;
@@ -24,7 +22,6 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(userDto));
     }
 
-
     @GetMapping("/getAll")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -34,7 +31,6 @@ public class UserController {
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
-
 
     @PutMapping("/updateUserById/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody UserDto user) {
@@ -46,5 +42,4 @@ public class UserController {
         return ResponseEntity.ok(userService.deleteUser(id));
 
     }
-
 }
